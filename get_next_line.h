@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 17:25:55 by csapt        #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 14:51:21 by csapt       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/04 16:57:03 by csapt       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ char	*ft_strdup(char *str);
 int     ft_chrcmp(char *str, char c);
 char	*ft_strcpy(char *src, char *dst);
 char	*ft_strjoin_gnl(char *s1, char *s2);
-int		ft_check_zero(char *str);
 int		ft_check_index(char *buf);
+char	*ft_strjoin_cpy(char *s1);
 
 #endif
