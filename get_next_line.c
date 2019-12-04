@@ -6,28 +6,42 @@
 /*   By: csapt <csapt@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 17:00:25 by csapt        #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 16:22:48 by csapt       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/04 18:38:14 by csapt       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+int		ft_chrcmp(char *str, char c)
+{
+	long	x;
+
+	x = 0;
+	while (str[x] != '\0')
+	{
+		if (str[x] == c)
+			return (0);
+		x++;
+	}
+	return (1);
+}
+
 int		ft_check_index(char *buf)
 {
-    long	x;
+	long	x;
 
-    x = 0;
-    while (buf[x] != '\0')
-    {
-        if (buf[x] == '\n')
-        {
-            x++;
-            return (x);
-        }
-        x++;
-    }
-    return (-1);
+	x = 0;
+	while (buf[x] != '\0')
+	{
+		if (buf[x] == '\n')
+		{
+			x++;
+			return (x);
+		}
+		x++;
+	}
+	return (-1);
 }
 
 int		get_next_zero(char **str, char *buf)
@@ -78,29 +92,5 @@ int		get_next_line(int fd, char **line)
 	}
 	*line = ft_strdup(str);
 	free(str);
-	return ((error == 0) ? 0 : 1); 
+	return ((error == 0) ? 0 : 1);
 }
-
-/*int main()
-{
-	int		fd;
-	int		ret;
-	char	*line;
-
-	fd = open("normal.txt", O_RDONLY);
-	if (fd == -1)
-	{	
-		printf("File Error\n");
-		return(1);
-	}
-	while (1)
-	{
-		ret = get_next_line(fd, &line);
-		printf("[%d] [%d] '%s'\n", fd, ret, line);
-		free(line);
-		if (ret <= 0)
-			break ;
-	}
-	close(fd);
-	return (0);
-}*/
