@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 17:00:25 by csapt        #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 15:20:16 by csapt       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/04 15:37:23 by csapt       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,10 +45,7 @@ int		get_next_zero(char **str, char *buf)
 	}
 	*str = ft_strjoin_gnl(*str, buf);
 	if (ft_chrcmp(buf, '\n') == 0)
-	{
-		*str = ft_strjoin_gnl(*str, buf);
 		return (1);
-	}
 	return (0);
 }
 
@@ -75,7 +72,7 @@ int		get_next_line(int fd, char **line)
 	{
 		if (get_next_zero(&str, buf) == 1)
 		{
-;			*line = ft_strdup(str);
+			*line = ft_strdup(str);
 			free(str);
 			return (1);
 		}
@@ -107,7 +104,7 @@ int		get_next_line(int fd, char **line)
 	return (1);
 }
 
-int main()
+/*int main()
 {
 	int		fd;
 	int		ret;
@@ -129,4 +126,4 @@ int main()
 	}
 	close(fd);
 	return (0);
-}
+}*/
