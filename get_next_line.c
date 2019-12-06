@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 17:00:25 by csapt        #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 14:30:36 by csapt       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 14:53:00 by csapt       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,8 +75,9 @@ int		get_next_line(int fd, char **line)
 	char			*str;
 	long			error;
 
-	error = 1;
 	str = NULL;
+	if ((error = 1) == 1 && (fd < 0 || !line || BUFFER_SIZE <= 0))
+		return (-1);
 	if (ft_chrcmp(buf, '\n') == 0)
 	{
 		if (get_next_zero(&str, buf) == 1)
@@ -89,7 +90,7 @@ int		get_next_line(int fd, char **line)
 	while (ft_chrcmp(buf, '\n') == 1 && error != 0)
 	{
 		get_next_backn(&str, buf, fd, &error);
-		if (fd < 0 || error < 0 || BUFFER_SIZE <= 0)
+		if (error < 0)
 			return (-1);
 	}
 	*line = ft_strdup(str);
