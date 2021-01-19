@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 20:28:43 by csapt             #+#    #+#             */
-/*   Updated: 2020/05/22 20:28:44 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 16:42:51 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,12 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# define BUFFER_SIZE 32
 
-int		get_next_zero(char **str, char *buf);
-int		get_next_backn(char **str, char *buf, int fd, long *error);
 int		get_next_line(int fd, char **line);
-size_t	ft_strlen_gnl(char *str);
-char	*ft_strdup(char *str);
-int		ft_chrcmp(char *str, char c);
-char	*ft_strcpy(char *src, char *dst);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-int		ft_check_index(char *buf);
-char	*ft_strjoin_cpy(char *s1);
+int		ft_strlento(char *str, char c, int mode);
+char	*ft_strdup(char *src, int size);
+char	*ft_strjoin(char *s1, char *s2);
+void	sub_modif(char *str);
 
 #endif

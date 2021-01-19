@@ -6,95 +6,101 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 20:28:30 by csapt             #+#    #+#             */
-/*   Updated: 2020/05/22 20:28:32 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 16:42:36 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen_gnl(char *str)
+int			ft_strlento(char *str, char c, int mode)
 {
-	size_t x;
+	int		x;
 
-	x = 0;
-	while (str[x] != '\0' && str[x] != '\n')
-		x++;
+	x = -1;
+	if (!str)
+		return (0);
+	if (mode)
+	{
+		while (str[++x])
+			if (str[x] == c)
+				return (1);
+		return (0);
+	}
+	while (str[++x])
+		if (str[x] == c)
+			return (x);
 	return (x);
 }
 
-char	*ft_strdup(char *str)
+char		*ft_strdup(char *src, int size)
 {
-	long	x;
-	long	i;
-	char	*strs;
+	int		x;
+	char	*ret;
 
 	x = 0;
-	i = ft_strlen_gnl(str);
-	if (!(strs = malloc(i + 1 * sizeof(char))))
-		return (0);
-	while (x < i)
-	{
-		strs[x] = str[x];
-		x++;
-	}
-	strs[x] = '\0';
-	return (strs);
-}
-
-char	*ft_strcpy(char *src, char *dst)
-{
-	size_t	x;
-
-	x = 0;
-	while (src[x] != '\0')
-	{
-		dst[x] = src[x];
-		x++;
-	}
-	while (dst[x] != '\0')
-	{
-		dst[x] = '\0';
-		x++;
-	}
-	return (dst);
-}
-
-char	*ft_strjoin_cpy(char *s1)
-{
-	size_t		x;
-	char		*str;
-
-	x = 0;
-	if (!(str = malloc(BUFFER_SIZE + 1)))
+	if (!size)
+		size = ft_strlento(src, '\n', 0);
+	else
+		size = BUFFER_SIZE;
+	if (!(ret = malloc((size + 1) * sizeof(char))))
 		return (NULL);
-	while (s1[x] != '\0' && s1[x] != '\n')
+	while (src[x] != '\n' && src[x] != '\0')
+	{
+		ret[x] = src[x];
+		x++;
+	}
+	ret[x] = '\0';
+	return (ret);
+}
+
+char		*ft_strjoin(char *s1, char *s2)
+{
+	int		x;
+	int		y;
+	char	*str;
+
+	x = 0;
+	y = 0;
+	if (s1 == NULL)
+		return (ft_strdup(s2, 0));
+	if (!(str = malloc((ft_strlento(s1, '\0', 0) +
+						ft_strlento(s2, '\n', 0) + 1) * sizeof(char))))
+		return (NULL);
+	while (s1[x])
 	{
 		str[x] = s1[x];
 		x++;
 	}
+	while (s2[y] && s2[y] != '\n')
+	{
+		str[x] = s2[y];
+		x++;
+		y++;
+	}
 	str[x] = '\0';
+	free(s1);
 	return (str);
 }
 
-char	*ft_strjoin_gnl(char *s1, char *s2)
+void		sub_modif(char *str)
 {
-	size_t		x;
-	size_t		i;
-	char		*str;
+	int x;
+	int y;
 
 	x = 0;
-	i = 0;
-	if (s1 == NULL)
-		return (ft_strjoin_cpy(s2));
-	if (!(str = (char *)malloc(ft_strlen_gnl((char *)s1) +
-	ft_strlen_gnl((char *)s2) + 1)))
-		return (NULL);
-	while (s1[x] != '\0' && s1[x] != '\n')
-		str[i++] = s1[x++];
-	free(s1);
-	x = 0;
-	while (s2[x] != '\0' && s2[x] != '\n')
-		str[i++] = s2[x++];
-	str[i] = '\0';
-	return (str);
+	y = 0;
+	while (str[x] != '\n' && str[x] != '\0')
+		x++;
+	x++;
+	while (str[x] != '\0')
+	{
+		str[y] = str[x];
+		x++;
+		y++;
+	}
+	while (y < x)
+	{
+		str[y] = '\0';
+		y++;
+	}
 }
